@@ -35,7 +35,8 @@ class Solution:
 """
 重点关注深浅拷贝问题：
 https://chatgpt.com/c/d7bf37ab-2d28-4457-b0b8-f2eef1e02141
-浅拷贝：a = b
+浅拷贝：
+a = b
 修改b也会修改a，因为只传递了引用
 
 深拷贝：
