@@ -1,7 +1,7 @@
 from typing import List
 
 class Solution:
-    @staticmethod
+    # @staticmethod
     def solveNQueens(self, n: int) -> List[List[str]]:
         visited_row = [False for _ in range(n + 5)]
         visited_col = [False for _ in range(n + 5)]
@@ -41,4 +41,4 @@ class Solution:
         return result
 
 # Solution.totalNQueens(None, 4)
-Solution.solveNQueens(None, 4)
+# Solution.solveNQueens(None, 4)
