@@ -18,5 +18,5 @@ class Solution:
                 sum += nums[j]
             
             if sum >= target:
-                result = min(result, j - i + )
+                result = min(result, j - i + i)
 
