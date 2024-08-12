@@ -9,14 +9,21 @@ class Solution:
         result = 0x7f7f7f7f
 
         while j < n:
-            while i < j and sum >= target:
+            while i <= j and sum >= target:
+                length = j - i + 1
+                if length == 1:
+                    return 1
+                result = min(result, length)
                 sum -= nums[i]
                 i += 1
-                
-            while i <= j and sum < target and j < n:
+            if j >= n - 1:
+                break
+            while sum < target and j < n - 1:
                 j += 1
                 sum += nums[j]
+        
+        return result if result != 0x7f7f7f7f else 0
             
-            if sum >= target:
-                result = min(result, j - i + i)
+            
+                
 
