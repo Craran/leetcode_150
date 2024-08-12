@@ -19,9 +19,12 @@ class Solution:
                 x, y = queue.popleft()
                 for k in range(2):
                     nx, ny = x + dr, y + dc[k]
-                    if (nx < 0 or nx > nr - 1) and (ny < 0 or ny > nx):
+                    if (nx < 0 or nx > nr - 1) or (ny < 0 or ny > nx):
                         continue
-                    queue.append([nx, ny])
+                    if visited[nx][ny] != True:
+                        visited[nx][ny] = True
+                        queue.append([nx, ny])
+                    
                     ans[nx][ny] = min(ans[nx][ny], ans[x][y] + triangle[nx][ny])
 
 
