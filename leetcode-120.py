@@ -1,34 +1,36 @@
 from typing import List
 from collections import deque
 
-# class Solution:
-#     # @staticmethod
-#     def minimumTotal(self, triangle: List[List[int]]) -> int:
-#         dr, dc = 1, [0, 1]
-#         cost = [[int(1e9+5) for _ in range(i)] for i in range(1, len(triangle) + 1)]
-#         n = len(triangle)
-
-#         queue = deque()
-#         queue.appendleft([0, 0])
-#         cost[0][0] = triangle[0][0]
-
-#         while queue:
-#             x, y = queue.pop()
-#             for i in range(2):
-#                 nx, ny = x + dr, y + dc[i]
-#                 if nx >= 0 and nx <= n - 1:
-#                     cost[nx][ny] = min(cost[nx][ny], cost[x][y] + triangle[nx][ny])
-#                     queue.appendleft([nx, ny])
-
-#                 else:
-#                     continue
-        
-#         return min(cost[n - 1])
-
 
 class Solution:
     # @staticmethod
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        n = len(triangle)
+        nr, nc = len(triangle), len(triangle[len(triangle) - 1])
+        dr, dc = 1, [0, 1]
+        visited = [[False for _ in range(nc + 5)] for _ in range(nr + 5)]
+        ans = [[0x3f3f3f3f for _ in range(nc + 5)] for _ in range(nr + 5)]
+        
+        queue = deque()
+        queue.append([0, 0])
+        ans[0][0] = triangle[0][0]
 
-        ans = [[0x3f3f3f3f for j in range(n)] for i in range(n)]
+        def bfs() -> None:
+            while queue:
+                x, y = queue.popleft()
+                for k in range(2):
+                    nx, ny = x + dr, y + dc[k]
+                    if (nx < 0 or nx > nr - 1) and (ny < 0 or ny > nx):
+                        continue
+                    queue.append([nx, ny])
+                    ans[nx][ny] = min(ans[nx][ny], ans[x][y] + triangle[nx][ny])
+
+
+        bfs()
+        return min(ans[nr - 1])
+    
+# Solution.minimumTotal(None, [[2],[3,4],[6,5,7],[4,1,8,3]])
+
+                    
+
+
+
