@@ -50,5 +50,3 @@ class Solution:
         result.append(last_str)
         return result
         
-m = Solution()
-m.fullJustify(["This", "is", "an", "example", "of", "text", "justification."], 16)
