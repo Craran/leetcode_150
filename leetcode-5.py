@@ -1,27 +1,61 @@
 from typing import List
-class Solution:
-    def is_bool(self, string: List[int]) -> bool:
-        if len(string) <= 1:
-            return True
-        for i in range(len(string) // 2):
-            if string[i] != string[len(string) - 1 - i]:
-                return False
-        return True
-    def longestPalindrome(self, s: str) -> str:
-        string: List[str] = []
-        result: List[str] = []
-        n = len(s)
-        visited = [False for _ in range(len(s) + 5)]
 
-        def dfs(x: int, n: int):
-            if self.is_bool(string):
-                result.append(string)
-            for nx in range(x + 1, n):
-                if visited[nx] == True:
-                    continue
-                visited[nx] = True
-                string.append(s[nx])
-                dfs(nx, n)
-                visited[nx] = False
-                string.pop()
-            
+class Solution:
+    # @staticmethod
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        max_length = 0
+        result = ''
+        for i in range(n):
+            delta = 1
+            # length = 1
+            while True:
+                if i - delta >= 0 and i + delta <= n - 1:
+                    if s[i - delta] == s[i + delta]:
+                        delta += 1
+                        continue
+                    length = 2 * (delta - 1) + 1
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + delta]
+                        break
+                    else:
+                        break
+                else:
+                    length = 2 * (delta - 1) + 1
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + delta]
+                        break
+                    else:
+                        break
+
+        
+        for i in range(n - 1):
+            if s[i] != s[i + 1]:
+                continue
+            delta = 1
+            while True:
+                if i - delta >= 0 and i + delta + 1 <= n - 1:
+                    if s[i - delta] == s[i + 1 + delta]:
+                        delta += 1
+                        continue
+                    length = 2 * (delta - 1) + 2
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + 1 + delta]
+                        break
+                    else:
+                        break
+                else:
+                    length = 2 * (delta - 1) + 2
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + 1 + delta]
+                        break
+                    else:
+                        break
+        return result
+    
+
+# Solution.longestPalindrome(None, 'sss')
