@@ -33,6 +33,12 @@ class Solution:
             if k >= length_3:
                 break
             
+            if i == length_1 and j == length_2 and k == length_3:
+                break
+            elif i == length_1 and s2[j] != s3[k] or j == length_2 and s1[i] != s3[k]:
+                return False
+            elif i < length_1 and s1[i] != s3[k] and j < length_2 and s2[j] != s3[k]:
+                return False
             
             
         
