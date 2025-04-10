@@ -1,14 +1,65 @@
 from typing import List
+
 class Solution:
+<<<<<<< HEAD
+
+=======
+    # @staticmethod
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
-        result = 0
-        state = [1 for _ in range(n + 5)]
+        max_length = 0
+        result = ''
         for i in range(n):
-            if i == 1 or i == n - 1:
-                state[i] = 1
+            delta = 1
+            # length = 1
+            while True:
+                if i - delta >= 0 and i + delta <= n - 1:
+                    if s[i - delta] == s[i + delta]:
+                        delta += 1
+                        continue
+                    length = 2 * (delta - 1) + 1
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + delta]
+                        break
+                    else:
+                        break
+                else:
+                    length = 2 * (delta - 1) + 1
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + delta]
+                        break
+                    else:
+                        break
+
+        
+        for i in range(n - 1):
+            if s[i] != s[i + 1]:
                 continue
-            j = i + 1
-            while (j - i) + i <= n - 1 and i - (j - i) >= 0:
-                if s[j] == s[i - (j - i)]:
-                    state[i] = max()
+            delta = 1
+            while True:
+                if i - delta >= 0 and i + delta + 1 <= n - 1:
+                    if s[i - delta] == s[i + 1 + delta]:
+                        delta += 1
+                        continue
+                    length = 2 * (delta - 1) + 2
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + 1 + delta]
+                        break
+                    else:
+                        break
+                else:
+                    length = 2 * (delta - 1) + 2
+                    if length > max_length:
+                        max_length = length
+                        result = s[i - delta + 1: i + 1 + delta]
+                        break
+                    else:
+                        break
+        return result
+    
+
+# Solution.longestPalindrome(None, 'sss')
+>>>>>>> 26e504882db256cf089eae85b3f68012a23800a6
