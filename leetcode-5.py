@@ -1,9 +1,6 @@
 from typing import List
 
 class Solution:
-<<<<<<< HEAD
-
-=======
     # @staticmethod
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
@@ -62,4 +59,3 @@ class Solution:
     
 
 # Solution.longestPalindrome(None, 'sss')
->>>>>>> 26e504882db256cf089eae85b3f68012a23800a6
