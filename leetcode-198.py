@@ -1,13 +1,12 @@
 from typing import List
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp = [[0] * 2 for _ in range(n + 5)]
+        dp[0][0] = 0
+        dp[0][1] = nums[0]
+        for i in range(1, n):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1])
+            dp[i][1] = max(dp[i - 1][0] + nums[i], dp[i][0])
 
-def rob(self, nums: List[int]) -> int:
-    n = len(nums)
-    L = [0] * (n + 5)
-    if n == 1:
-        return nums[0]
-        
-    L[0], L[1] = nums[0], nums[1]
-    for i in range(2, n):
-        L[i] = max(L[i - 2], L[i - 3]) + nums[i]
-
-    return max(L[n - 1], L[n - 2])
+        return max(dp[n - 1][0], dp[n - 1][1])
