@@ -1,36 +1,29 @@
 from typing import List
+from functools import cache
+from math import inf
+
+class Solution:
+    # @staticmethod
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        n = len(coins)
+        @cache
+        def dfs(i, amount):
+            if i < 0 and amount == 0:
+                return 0
+            if i < 0:
+                return inf
+            
+
+            if amount < coins[i]:
+                return dfs(i - 1, amount)
+            
+            return min(dfs(i - 1, amount), dfs(i, amount - coins[i]) + 1)
 
 
-def coinChange(self, coins: List[int], amount: int) -> int:
-    if amount == 0:
-        return 0    
-    
-    max_num = int(2 ** 31)
 
-    dp = [-1] * (amount + 5)
-    # cs = {}
+        res = dfs(n - 1, amount)
+        if res == inf:
+            return -1
+        return res
 
-    # for coin in coins:
-    #     if coin in cs:
-    #         continue
-    #     cs[coin] = True
-    
-    # coins[:] = reversed(sorted(coins))
-    for i in range(amount + 1):
-        if i in coins:
-            dp[i] = 1
-
-    
-
-    for i in range(amount + 1):
-        if dp[i] == 1:
-            continue
-        min_sub = max_num
-        for coin in coins:
-            if i - coin < 1 or dp[i - coin] == -1:
-                continue
-            min_sub = min(min_sub, dp[i -coin])
-        dp[i] = min_sub + 1 if min_sub != max_num else dp[i]
-    return dp[amount] 
-
-coinChange(None, [1,2,5], 11)
+# print(Solution.coinChange(None, [1, 2, 5], 11))
